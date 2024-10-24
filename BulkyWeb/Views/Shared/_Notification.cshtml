@@ -1,0 +1,25 @@
+﻿<script>
+    // Wait for the document to be ready
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the element by its ID
+        const myElement = document.getElementById('myElement');
+
+        // Show the element initially (optional)
+        myElement.style.display = 'block';
+
+        // Hide the element after 5 seconds
+        setTimeout(function () {
+            myElement.style.display = 'none';
+        }, 3000);
+    });
+</script>
+
+@if (TempData["success"] != null)
+{
+    <h5 id="myElement" class="text-success">@TempData["success"]</h5>
+}
+
+@if (TempData["error"] != null)
+{
+    <h5 id="myElement" class="text-danger">@TempData["error"]</h5>
+}

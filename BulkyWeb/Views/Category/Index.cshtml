@@ -1,0 +1,59 @@
+﻿@model List<Category>
+
+
+
+<div class=" container">
+
+    <div class="row pt-4 pb-3">
+        <div class="col-6 ">
+            <h2 class="text-primary">
+                Category List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <!--asp-controller="Category" -----: name of the controler
+            asp-action="Create"----------------: name of the view
+            you can use action=create only because it is in same controller-->
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-square"></i> Add New Category
+            </a>
+        </div>
+    </div>
+
+
+<table class="table table-bordered table-striped ">
+    <thead>
+    <tr>
+        <th>
+            Catogery Name
+        </th>
+        <th>
+            display order
+        </th>
+        <th>Id</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model.OrderBy(u=>u.DisplayOrder))
+        {
+            <tr>
+                <th>@obj.Name</th>
+                <th>@obj.DisplayOrder</th>
+                <th>@obj.CategoryId</th>
+                <th class="d-flex justify-content-evenly">
+                    @*to get id you use asp route*@
+                    @*you can use any name after asp-route-anyname but this name must = name in cintroller [[ Edit(int? id) ]]*@
+                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.CategoryId" class="btn btn-primary">
+                        <i class="bi bi-pen"></i>  Edit
+                    </a>
+                        <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.CategoryId" class="btn btn-danger">
+                        <i class="bi bi-trash"></i>  Delete
+                    </a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+<partial name="_Notification" />
+</div>

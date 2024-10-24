@@ -1,0 +1,54 @@
+﻿
+
+@model Category
+
+
+<!--use this method to create a category-->
+<form method="post">
+
+    <div class="border p-4 mt-4">
+        <div class="row mb-3">
+            <h2>Create a New Category</h2>
+            <!--hr : horithontal line-->
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Name" class="mb-2">Category Name</label>
+            <!--use asp-for :  .net know this for display order-->
+            <!--you may not use type __ type based on property name  -->
+            <input asp-for="Name" type="text"  class="form-control" />
+            <!--adding span if hasnot validat the name will display the error in the sapn-->
+            <span asp-validation-for="Name" class=" text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <!--you may not type a text for label-->
+            <!--in default this will take the name of the propety fpr example:"DisplayOrder"-->
+            <!--if you want to cahnge the name go to the model and use diplay name-->
+            <label asp-for="DisplayOrder" class="mb-2"></label>
+            <input asp-for="DisplayOrder" class="form-control" />
+            <span asp-validation-for="DisplayOrder" class=" text-danger"></span>
+        </div>
+        <!--to add all errors in on list-->
+        <div asp-validation-summary="All" class="text-danger pb-3"></div>
+        <!--error for model only-->
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div asp-validation-summary="None" class="pt-4"></div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Create</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Category" asp-action="Index" class="btn btn-outline-secondary form-control">Back</a>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+@*add a clinte validation using js and .net *@
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}
